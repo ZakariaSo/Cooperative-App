@@ -1,0 +1,158 @@
+/* Google font */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* Couleurs organiques et naturelles */
+  --color-primary-clr: #7cb342; /* Vert nature principal */
+  --color-secondary-clr: #4a7c59; /* Vert foncé */
+  --color-accent-clr: #f9a825; /* Jaune doré pour accents */
+  --color-bgClr: #f5f9f3; /* Fond crème très clair */
+  --color-surface: #ffffff; /* Surface blanche */
+  --color-text-dark: #2d3e2d; /* Texte sombre naturel */
+  
+  /* Typographie */
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Quicksand", sans-serif;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply bg-bgClr text-text-dark font-primary;
+}
+
+@layer utilities {
+  .container {
+    @apply px-4 mx-auto md:px-8 lg:px-12 2xl:max-w-screen-xl;
+  }
+  
+  p {
+    @apply text-sm sm:text-base md:text-lg text-neutral-600 leading-relaxed;
+  }
+  
+  .section {
+    @apply py-24 lg:py-32;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-secondary font-bold text-text-dark;
+  }
+  
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-2xl lg:text-4xl;
+  }
+  
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+  
+  .input {
+    @apply h-12 w-full border-2 border-neutral-300 rounded-lg 
+    px-4 py-2 focus:border-primary-clr focus:outline-none 
+    transition-colors bg-white;
+  }
+  
+  button {
+    @apply cursor-pointer transition-all duration-300;
+  }
+}
+
+@layer components {
+  /* Bouton principal - Vert bio */
+  .primary-btn {
+    @apply bg-primary-clr px-8 py-3 text-white font-semibold
+    tracking-wide rounded-full border-2 border-primary-clr 
+    hover:bg-secondary-clr hover:border-secondary-clr
+    transition-all duration-300 shadow-md hover:shadow-lg
+    active:scale-95;
+  }
+  
+  /* Bouton secondaire - Contour */
+  .secondary-btn {
+    @apply px-8 py-3 border-2 border-primary-clr font-semibold 
+    tracking-wide rounded-full text-primary-clr
+    hover:bg-primary-clr hover:text-white 
+    transition-all duration-300 shadow-sm hover:shadow-md
+    active:scale-95;
+  }
+  
+  /* Bouton accent - Jaune doré */
+  .accent-btn {
+    @apply bg-accent-clr px-8 py-3 text-text-dark font-semibold
+    tracking-wide rounded-full border-2 border-accent-clr
+    hover:bg-yellow-500 hover:border-yellow-500
+    transition-all duration-300 shadow-md hover:shadow-lg
+    active:scale-95;
+  }
+  
+  /* Badge bio */
+  .bio-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full 
+    text-xs font-semibold bg-primary-clr/10 text-primary-clr
+    border border-primary-clr/20;
+  }
+  
+  /* Card produit */
+  .product-card {
+    @apply bg-surface rounded-2xl shadow-md hover:shadow-xl 
+    transition-shadow duration-300 overflow-hidden border border-neutral-100;
+  }
+}
+
+/* Header */
+.header {
+  @apply fixed top-0 left-0 w-full bg-surface/95 backdrop-blur-md 
+  z-50 border-b border-neutral-200 transition-all duration-300;
+}
+
+.header.active {
+  @apply shadow-lg bg-surface;
+}
+
+/* Navigation */
+.nav-link {
+  @apply text-text-dark hover:text-primary-clr transition-colors 
+  duration-300 font-medium;
+}
+
+/* Sections spéciales */
+.hero-section {
+  @apply bg-gradient-to-br from-primary-clr/10 via-bgClr to-accent-clr/5;
+}
+
+.organic-pattern {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(124, 179, 66, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(249, 168, 37, 0.05) 0%, transparent 50%);
+}
+
+/* Animations naturelles */
+@keyframes leafFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.leaf-animation {
+  animation: leafFloat 3s ease-in-out infinite;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-clr rounded-full hover:bg-secondary-clr;
+}
