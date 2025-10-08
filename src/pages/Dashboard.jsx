@@ -7,19 +7,19 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-gray-500 text-sm font-medium">Produits</h3>
-          <p className="text-3xl font-bold text-gray-800 mt-2">245</p>
+          <p className="text-3xl font-bold text-gray-800 mt-2"></p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-gray-500 text-sm font-medium">Commandes</h3>
-          <p className="text-3xl font-bold text-gray-800 mt-2">128</p>
+          <p className="text-3xl font-bold text-gray-800 mt-2"></p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-gray-500 text-sm font-medium">Clients</h3>
-          <p className="text-3xl font-bold text-gray-800 mt-2">89</p>
+          <p className="text-3xl font-bold text-gray-800 mt-2"></p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-gray-500 text-sm font-medium">Revenu</h3>
-          <p className="text-3xl font-bold text-gray-800 mt-2">45,890 DH</p>
+          <p className="text-3xl font-bold text-gray-800 mt-2"></p>
         </div>
       </div>
     </div>
