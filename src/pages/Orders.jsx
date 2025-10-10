@@ -6,7 +6,7 @@ const Orders = () => {
     { id: 2, client: "Mohamed el qarss", date: "07/10/2025", montant: "85 MAD", statut: "Livrée" },
     { id: 3, client: "Youness Hafa", date: "06/10/2025", montant: "200 MAD", statut: "Annulée" },
     { id: 4, client: "Ayoub Tigmi", date: "05/10/2025", montant: "65 MAD", statut: "Livrée" },
-    { id: 5, client: "Otman Sobahi", date: "04/10/2025", montant: "150 MAD", statut: "En cours" },
+    { id: 5, client: "Otman Sobahi", date: "04/10/2025", montant: "50 MAD", statut: "En cours" },
   ];
 
   return (
