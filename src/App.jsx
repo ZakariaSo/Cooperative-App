@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CartProvider } from './context/CartContext';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
@@ -10,7 +9,6 @@ import Settings from './pages/Settings';
 
 function App() {
   return (
-    <CartProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -22,7 +20,6 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </CartProvider>
   );
 }
 
