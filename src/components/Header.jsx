@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
-import { useCart } from "../context/CartContext";
+import { useCartStore } from "../store/useCartStore";
+import { useOrdersStore } from "../store/useOrdersStore"; 
 
 const MenuIcon = () => (
   <svg
@@ -17,23 +19,45 @@ const MenuIcon = () => (
     />
   </svg>
 );
-const checkoutHandler = () => {
-  alert("Merci pour votre commande ! 🫒");
-  window.location.href = "/Orders"; 
-
-}
 
 const Header = ({ toggleSidebar }) => {
+  const navigate = useNavigate();
 
-  const {
-    cartItems,
-    getTotalItems,
-    getTotalPrice,
-    updateQuantity,
-    removeFromCart,
-    isCartOpen,
-    setIsCartOpen,
-  } = useCart();
+
+  const cartItems = useCartStore((state) => state.cartItems);
+  const isCartOpen = useCartStore((state) => state.isCartOpen);
+  const setIsCartOpen = useCartStore((state) => state.setIsCartOpen);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const getTotalItems = useCartStore((state) => state.getTotalItems);
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+
+
+  const addOrder = useOrdersStore((state) => state.addOrder);
+
+  
+  const checkoutHandler = () => {
+    if (cartItems.length === 0) {
+      alert("Votre panier est vide !");
+      return;
+    }
+
+ 
+    addOrder(cartItems);
+
+  
+    alert("Merci pour votre commande ! 🫒");
+
+
+    clearCart();
+
+ 
+    setIsCartOpen(false);
+
+  
+    navigate("/orders");
+  };
 
   return (
     <>
@@ -73,18 +97,18 @@ const Header = ({ toggleSidebar }) => {
         </div>
       </header>
 
-      {/* Panel du panier */}
+
       {isCartOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
-          {/* Overlay */}
+     
           <div
             className="absolute inset-0 bg-black opacity-5 "
             onClick={() => setIsCartOpen(false)}
           />
 
-          {/* Panel */}
+ 
           <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl flex flex-col">
-            {/* En-tête du panier */}
+ 
             <div className="bg-green-600 text-white p-4 flex justify-between items-center">
               <h2 className="text-xl font-bold">🛒 Votre Panier</h2>
               <button
@@ -95,7 +119,7 @@ const Header = ({ toggleSidebar }) => {
               </button>
             </div>
 
-            {/* Contenu du panier */}
+       
             <div className="flex-1 overflow-y-auto p-4">
               {cartItems.length === 0 ? (
                 <div className="text-center py-12">
@@ -129,7 +153,7 @@ const Header = ({ toggleSidebar }) => {
                         </div>
                       </div>
 
-                      {/* Contrôles de quantité */}
+          
                       <div className="flex items-center justify-between mt-3">
                         <div className="flex items-center gap-2 bg-white rounded-lg border border-gray-300 p-1">
                           <button
@@ -162,7 +186,7 @@ const Header = ({ toggleSidebar }) => {
                         </button>
                       </div>
 
-                      {/* Sous-total */}
+
                       <div className="mt-2 text-right">
                         <span className="text-sm text-gray-600">
                           Sous-total:{" "}
@@ -178,7 +202,7 @@ const Header = ({ toggleSidebar }) => {
               )}
             </div>
 
-            {/* Pied du panier */}
+
             {cartItems.length > 0 && (
               <div className="border-t bg-gray-50 p-4 shadow-lg">
                 <div className="bg-white rounded-lg p-4 mb-3 border border-gray-200">
